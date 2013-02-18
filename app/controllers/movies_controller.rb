@@ -10,6 +10,9 @@ class MoviesController < ApplicationController
     @ratings = ["G", "PG", "PG-13", "R", "NC-17"]
     unless (@input = params.fetch(:ratings){session[:ratings]})
       @input = Hash.new
+      @ratings.each do |rating|
+        @input[rating]="yes"
+      end
     end
     header = params.fetch(:sort){session[:sort]}
     if header == 'title'
